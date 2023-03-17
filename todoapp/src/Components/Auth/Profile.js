@@ -1,5 +1,5 @@
 import React from 'react'
-import { useAuth } from '../../contexts/AuthContext'
+import { useAuth } from '../../Contexts/AuthContext'
 import './Profile.css'
 
 export default function Profile() {

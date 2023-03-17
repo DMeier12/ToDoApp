@@ -27,8 +27,7 @@ function App() {
 
             <Route path='./login' element={<Login />} />
             <Route path='./routing' element={<Routing />} />
-            <Route path='./bootstrap' element={<Bootstrap />} />
-            <Route path='./testing' element={<Testing />} />
+            <Route path='./Testing' element={<Testing />} />
 
             <Route path='*' element={<NotFound />} />
           </Routes>

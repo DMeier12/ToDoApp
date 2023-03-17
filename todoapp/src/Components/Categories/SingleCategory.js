@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { useAuth } from '../../contexts/AuthContext'
+import { useAuth } from '../../Contexts/AuthContext'
 import { FaTrashAlt, FaEdit } from 'react-icons/fa'
 import axios from 'axios'
 import CatEdit from './CatEdit'

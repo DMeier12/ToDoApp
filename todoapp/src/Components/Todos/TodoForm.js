@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react'
 import { Formik, Field, Form } from 'formik'
-import { todoSchema } from '../../utilities/validationSchema'
+import { todoSchema } from '../../validationSchema'
 import axios from 'axios'
 
 export default function Todoform(props) {

@@ -1,6 +1,6 @@
 import React from 'react'
-import { Formik, Form, Field } from 'formik'//This will produce the form for creating/editing a category
-import catSchema from '../../utilities/validationSchema'
+import { Formik, Form, Field } from 'formik'
+import catSchema from '/src/validationSchema'
 import axios from 'axios'
 
 export default function CatForm(props) {

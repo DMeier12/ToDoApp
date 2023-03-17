@@ -1,7 +1,7 @@
 import React from 'react'
 import { Nav, Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { useAuth } from '../contexts/AuthContext'
+import { useAuth } from '../../Contexts/AuthContext'
 
 export default function Navigation() {
   const { currentUser } = useAuth()

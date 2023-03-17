@@ -2,8 +2,8 @@ import React from 'react'
 import './Routing.css'
 
 import { Container, Row } from 'react-bootstrap'
-import RouterInfo from './RouterInfo'
-import AuthInfo from './AuthInfo'
+import RouterInfo from 'Routing'
+import {AuthInfo} from '../../AuthInfo'
 
 export default function Routing() {
   return (

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { useAuth } from '../../contexts/AuthContext'
+import { useAuth } from '../../Contexts/AuthContext'
 import axios from 'axios'
 import SingleCategory from './SingleCategory'
 import CatCreate from './CatCreate'
