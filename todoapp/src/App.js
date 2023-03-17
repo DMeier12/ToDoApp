@@ -5,6 +5,7 @@ import 'axios';
 import Bootstrap from './components/Bootstrap/Bootstrap';
 import Routing from './components/Routing/Routing'
 import Navigation from './components/Navigation';
+import AuthProvider from './contexts/AuthContext'
 function App() {
   return (
 
