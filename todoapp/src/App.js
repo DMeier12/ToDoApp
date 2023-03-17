@@ -11,7 +11,7 @@ import NotFound from './components/NotFound'
 import Footer from './components/Footer'
 import ProtectedRoute from './components/ProtectedRoute'
 import Categories from './components/Categories/Categories'
-import Resources from './Components/Todos/Resources'
+import Resources from './Components/Todos/Todos'
 import Testing from './testing/Testing'
 function App() {
   return (
