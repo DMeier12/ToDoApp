@@ -1,5 +1,5 @@
 import React from 'react'
-import { useAuth } from '../../contexts/AuthContext'
+import { useAuth } from './Contexts/AuthContext'
 import { Container, Card } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 

@@ -1,18 +1,18 @@
 import React from 'react'
 import './App.css';
-import 'Bootstrap';
+//import 'Bootstrap';
 import 'axios';
 import Routing from './Components/Routing/Routing'
-import Navigation from './components/Navigation';
-import AuthProvider from './contexts/AuthContext'
+import Navigation from './Components/Navigation';
+import AuthProvider from './Contexts/AuthContext'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Login from './components/Auth/Login'
-import NotFound from './components/NotFound'
-import Footer from './components/Footer'
-import ProtectedRoute from './components/ProtectedRoute'
-import Categories from './components/Categories/Categories'
+import Login from './Components/Auth/Login'
+import NotFound from './Components/NotFound'
+import Footer from './Components/Footer'
+import ProtectedRoute from './Components/ProtectedRoute'
+import Categories from './Components/Categories/Categories'
 import Resources from './Components/Todos/Todos'
-import Testing from './testing/Testing'
+//import Testing from './testing/Testing'
 function App() {
   return (
 
@@ -27,7 +27,6 @@ function App() {
 
             <Route path='./login' element={<Login />} />
             <Route path='./routing' element={<Routing />} />
-            <Route path='./testing' element={<Testing />} />
 
 
             <Route path='*' element={<NotFound />} />

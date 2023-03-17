@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { auth } from '.../base'
-import { githubAuthProvider, signInWithPopup, signout } from 'firebase/auth'
+import { auth } from '../base'
+import { GithubAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
 
-const AuthContext = react.createContext()
+const AuthContext = React.createContext()
 export function useAught() {
     return useContext(AuthContext)
 }
@@ -19,7 +19,7 @@ export default function AuthProvider({children}) {
         }))
     }
     async function logout(){
-        signout(auth).then(setCurrentUser(null))
+        signOut(auth).then(setCurrentUser(null))
     }
     const value = {currentUser, login, logout}
     useEffect(() => {

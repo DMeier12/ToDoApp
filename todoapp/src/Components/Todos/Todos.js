@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import {useAuth} from '../../contexts/AuthContext'
+import {useAuth} from './Components/Contexts/AuthContext'
 import axios from 'axios'
 import { Container } from 'react-bootstrap'
 import SingleTodo from './SingleTodo.js'
-import FilterCat from './FilterCat'
+import FilterCat from './Filtercat'
 import TodoCreate from './TodoCreate'
 import './Todos.css'
 
@@ -28,7 +28,7 @@ export default function Todos() {
      }
 
      useEffect(() => {
-        getToDos()
+        getTodos()
      }, []);
 
   return (
@@ -52,7 +52,7 @@ export default function Todos() {
         <Container>
             <article className='todoGallery row justify-content-center'>
                 {filter === 0 ? todos.map(x =>
-                    <SingleTodo key={x.todoId} todo={x} getToDos={getToDos} />
+                    <SingleTodo key={x.todoId} todo={x} getTodos={getTodos} />
                 ) :
                 todos.filter(x => x.categoryId === filter).map(x =>
                     <SingleTodo key={x.todoId} todo={x} getTodos={getTodos} />

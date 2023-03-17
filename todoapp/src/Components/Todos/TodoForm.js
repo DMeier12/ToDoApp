@@ -50,7 +50,7 @@ export default function Todoform(props) {
             description: props.todo ? props.todo.description : '',
             categoryId: props.todo ? props.todo.categoryId : ''
         }}
-        validationSchema={todoschema}
+        validationSchema={todoSchema}
         onSubmit={(values) => handleSubmit(values)}
     >
 

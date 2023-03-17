@@ -35,7 +35,7 @@ export default function Categroeies() {
                 }
             </div>
         }
-         <Container className='p-2'>
+         <container className='p-2'>
             <table className='table bg-info table-dark my-3'>
                 <thead className='table-secondary text-uppercase'>
                     <tr>
@@ -53,7 +53,7 @@ export default function Categroeies() {
                    )}
               </tbody>
             </table>
-        </Container>
+        </container>
     </section>
   )
 }
