@@ -2,10 +2,17 @@ import React from 'react'
 import './App.css';
 import 'Bootstrap';
 import 'axios';
-import Bootstrap from './components/Bootstrap/Bootstrap';
 import Routing from './components/Routing/Routing'
 import Navigation from './components/Navigation';
 import AuthProvider from './contexts/AuthContext'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Login from './components/Auth/Login'
+import NotFound from './components/NotFound'
+import Footer from './components/Footer'
+import ProtectedRoute from './components/ProtectedRoute'
+import Categories from './components/Categories/Categories'
+import Resources from './Components/Todos/Resources'
+import Testing from './testing/Testing'
 function App() {
   return (
 
