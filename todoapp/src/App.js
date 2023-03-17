@@ -12,7 +12,7 @@ import Footer from './Components/Footer'
 import ProtectedRoute from './Components/ProtectedRoute'
 import Categories from './Components/Categories/Categories'
 import Resources from './Components/Todos/Todos'
-//import Testing from './testing/Testing'
+import Testing from './testing/Testing'
 function App() {
   return (
 
@@ -27,7 +27,8 @@ function App() {
 
             <Route path='./login' element={<Login />} />
             <Route path='./routing' element={<Routing />} />
-
+            <Route path='./bootstrap' element={<Bootstrap />} />
+            <Route path='./testing' element={<Testing />} />
 
             <Route path='*' element={<NotFound />} />
           </Routes>
