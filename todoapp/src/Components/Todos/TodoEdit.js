@@ -12,8 +12,8 @@ export default function TodoEdit(props) {
             <h3>Editing {props.todo.name}</h3>
         </Modal.Header>
         <Modal.Body>
-            <ResourceForm
-                resource={props.todo}
+            <TodoForm
+                todo={props.todo}
                 setShowEdit={props.setShowEdit}
                 getTodo={props.getTodo} />
         </Modal.Body>

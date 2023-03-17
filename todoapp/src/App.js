@@ -2,7 +2,7 @@ import React from 'react'
 import './App.css';
 import 'Bootstrap';
 import 'axios';
-import Routing from './components/Routing/Routing'
+import Routing from './Components/Routing/Routing'
 import Navigation from './components/Navigation';
 import AuthProvider from './contexts/AuthContext'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -21,14 +21,13 @@ function App() {
         <Router>
           <Navigation />
           <Routes>
-            <Route path='/' element={<ProtectedRoute><Resources /></ProtectedRoute>} />
-            <Route path='/categories' element={<ProtectedRoute><Categories /></ProtectedRoute>} />
-            <Route path='/resources' element={<ProtectedRoute><Resources /></ProtectedRoute>} />
+            <Route path='./' element={<ProtectedRoute><Resources /></ProtectedRoute>} />
+            <Route path='./categories' element={<ProtectedRoute><Categories /></ProtectedRoute>} />
+            <Route path='./resources' element={<ProtectedRoute><Resources /></ProtectedRoute>} />
 
-            <Route path='/login' element={<Login />} />
-            <Route path='/bootstrap' element={<Bootstrap />} />
-            <Route path='/routing' element={<Routing />} />
-            <Route path='/testing' element={<Testing />} />
+            <Route path='./login' element={<Login />} />
+            <Route path='./routing' element={<Routing />} />
+            <Route path='./testing' element={<Testing />} />
 
 
             <Route path='*' element={<NotFound />} />
