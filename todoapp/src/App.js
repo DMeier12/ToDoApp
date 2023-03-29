@@ -2,7 +2,6 @@ import React from 'react'
 import './App.css';
 //import 'Bootstrap';
 import 'axios';
-import Routing from './Components/Routing/Routing'
 import Navigation from './Components/Navigation';
 import AuthProvider from './Contexts/AuthContext'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -26,7 +25,6 @@ function App() {
             <Route path='./resources' element={<ProtectedRoute><Resources /></ProtectedRoute>} />
 
             <Route path='./login' element={<Login />} />
-            <Route path='./routing' element={<Routing />} />
             <Route path='./Testing' element={<Testing />} />
 
             <Route path='*' element={<NotFound />} />

@@ -1,5 +1,5 @@
 import React from 'react'
-import image from './images/404error.jpg'
+import image from '../images/404error.jpg'
 import './NotFound.css'
 
 

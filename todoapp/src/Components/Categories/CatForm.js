@@ -1,7 +1,7 @@
 import React from 'react'
 import { Formik, Form, Field } from 'formik'
-import catSchema from '/src/validationSchema'
 import axios from 'axios'
+import { catSchema } from "../validationSchema"
 
 export default function CatForm(props) {
     const handleSubmit = (values) => {
