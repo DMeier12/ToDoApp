@@ -1,0 +1,46 @@
+.navbar-toggleable {
+    background-color: #f8f9fa;
+    border-bottom: none;
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .navbar-toggle {
+    border: none;
+    background: transparent;
+  }
+  
+  .navbar-toggle:focus {
+    outline: none;
+  }
+  
+  .navbar-toggle .icon-bar {
+    background-color: #212529;
+    margin: 4px 0;
+    width: 22px;
+    height: 2px;
+    transition: all 0.2s;
+  }
+  
+  .navbar-toggle .icon-bar:last-child {
+    margin-bottom: 0;
+  }
+  
+  .navbar-toggle.collapsed .icon-bar {
+    transform: rotate(0deg);
+  }
+  
+  .navbar-toggle:not(.collapsed) .icon-bar:nth-of-type(1) {
+    transform: translate(0, 5px) rotate(45deg);
+  }
+  
+  .navbar-toggle:not(.collapsed) .icon-bar:nth-of-type(2) {
+    opacity: 0;
+  }
+  
+  .navbar-toggle:not(.collapsed) .icon-bar:nth-of-type(3) {
+    transform: translate(0, -5px) rotate(-45deg);
+  }

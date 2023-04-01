@@ -4,7 +4,7 @@ import axios from 'axios'
 import SingleCategory from './SingleCategory'
 import CatCreate from './CatCreate'
 
-export default function Categroeies() {
+export default function Categories() {
     const [categories, setCategories] = useState([]);
     const {currentUser} = useAuth();
     const [showCreate, setShowCreate] = useState(false)
@@ -23,25 +23,25 @@ export default function Categroeies() {
                 <h1 className='text-center'>Categories Dashboard</h1>
             </article>
             {currentUser.email === process.env.REACT_APP_EMAIL_ADMIN &&
-            <div className='bg-dark p-2 mb-3 text-center'>
-                {showCreate ?
-                    <>
-                       <button onClick={() => setShowCreate(false)} className='btn btn-warning'>Cancel</button>
-                       <CatCreate
-                            getCategories={getCategories}
-                            setShowCreate={setShowCreate} />
-                    </>
-                : <button className='btn btn-info' onClick={() => setShowCreate(true)}>Create Category</button>
-                }
-            </div>
-        }
+                <div className='bg-dark p-2 mb-3 text-center'>
+                    {showCreate ?
+                        <>
+                            <button onClick={() => setShowCreate(false)} className='btn btn-warning'>Cancel</button>
+                            <CatCreate
+                                getCategories={getCategories}
+                                setShowCreate={setShowCreate} />
+                        </>
+                        : <button className='btn btn-info' onClick={() => setShowCreate(true)}>Create Category</button>
+                    }
+                </div>
+            }
          <container className='p-2'>
             <table className='table bg-info table-dark my-3'>
                 <thead className='table-secondary text-uppercase'>
                     <tr>
                         <th>Name</th>
                         <th>Description</th>
-                        {currentUser.email === process.env.REACT_APP_EMAIL_ADMIN &&
+                        {currentUser.email === process.env.REACT_APP_EMAIL_ADMIN && 
                             <th>Actions</th>
                         }
                     </tr>

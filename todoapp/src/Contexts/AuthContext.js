@@ -1,38 +1,51 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { auth } from '../base'
-import { GithubAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
+import { initializeApp } from '@firebase/app';
+import { GithubAuthProvider, signInWithPopup, FacebookAuthProvider, signOut, getAuth} from 'firebase/auth'
 
-const AuthContext = React.createContext()
+export const AuthContext = React.createContext()
+export const GitHubProvider = new GithubAuthProvider();
+
 export function useAuth() {
-    return useContext(AuthContext)
+    return getAuth
 }
 
-export default function AuthProvider({children}) {
+export default function AuthProvider({children}, props) {
     const [currentUser, setCurrentUser] = useState()
-    const [loading, setLoading] = useState(true)
-    const githubAuthProvider = new GithubAuthProvider()
+    const [error, setError] = useState()
 
-    async function login() {
-        return (signInWithPopup(auth, githubAuthProvider).then(authData => {
-            console.log(authData)
-            setCurrentUser(authData.user)
-        }))
+    const SignInWithGitHub = async () => {
+        try {
+            await signInWithPopup(useAuth, GithubAuthProvider)
+            setCurrentUser(useAuth.currentUser)
+        } catch (error) {
+            setError(error.message);
+            console.log(error)
+        }
     }
-    async function logout(){
-        signOut(auth).then(setCurrentUser(null))
-    }
+
+    const handleSignOut = async () => {
+        try {
+            await signOut(useAuth);
+            setCurrentUser(null)
+        } catch (error) {
+          setError(error.message);
+        }
+      };
+
+    const login = () => { SignInWithGitHub() };
+    const logout = () => { handleSignOut() };
+
     const value = {currentUser, login, logout}
-    useEffect(() => {
-        const authChange = auth.onAuthStateChanged(user =>{
-            setCurrentUser(user)
-            setLoading(false)
-        })
-        return authChange
-    }, [])  
-    return (
-        <AuthContext.Provider value={value}>
-            {}
-            {!loading && children}
-        </AuthContext.Provider>
-    )
+    // useEffect(() => {
+    //     const authChange = useAuth.onAuthStateChanged(user =>{
+    //         setCurrentUser(useAuth.currentUser)
+    //     })
+    //     return authChange
+    // }, [])  
+    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+        // <AuthContext.Provider value={value}>
+        //     {}
+        //     {children}
+        // </AuthContext.Provider>
+
 }
