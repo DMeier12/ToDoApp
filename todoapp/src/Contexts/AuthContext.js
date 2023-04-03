@@ -1,51 +1,44 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { initializeApp } from '@firebase/app';
-import { GithubAuthProvider, signInWithPopup, FacebookAuthProvider, signOut, getAuth} from 'firebase/auth'
+import React, { useState, useEffect, createContext } from 'react';
+import {firebaseConfig } from '../base';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 
-export const AuthContext = React.createContext()
-export const GitHubProvider = new GithubAuthProvider();
+firebase.initializeApp(firebaseConfig);
 
-export function useAuth() {
-    return getAuth
-}
+// Create a context for the authentication provider
+export const AuthContext = createContext();
 
-export default function AuthProvider({children}, props) {
-    const [currentUser, setCurrentUser] = useState()
-    const [error, setError] = useState()
+// Create the authentication provider component
+const AuthProvider = ({ children }) => {
+    const [currentUser, setCurrentUser] = useState(null);
 
-    const SignInWithGitHub = async () => {
-        try {
-            await signInWithPopup(useAuth, GithubAuthProvider)
-            setCurrentUser(useAuth.currentUser)
-        } catch (error) {
-            setError(error.message);
-            console.log(error)
-        }
-    }
+    // Listen for Firebase auth state changes
+    useEffect(() => {
+        const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+            setCurrentUser(user);
+        });
+        return unsubscribe;
+    }, []);
 
-    const handleSignOut = async () => {
-        try {
-            await signOut(useAuth);
-            setCurrentUser(null)
-        } catch (error) {
-          setError(error.message);
-        }
-      };
+    // Sign in with GitHub
+    const signInWithGitHub = () => {
+        const provider = new firebase.auth.GithubAuthProvider();
+        firebase.auth().signInWithPopup(provider);
+    };
 
-    const login = () => { SignInWithGitHub() };
-    const logout = () => { handleSignOut() };
+    //Sign out
+    const signOut = () => {
+        firebase.auth().signOut();
+    };
 
-    const value = {currentUser, login, logout}
-    // useEffect(() => {
-    //     const authChange = useAuth.onAuthStateChanged(user =>{
-    //         setCurrentUser(useAuth.currentUser)
-    //     })
-    //     return authChange
-    // }, [])  
-    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-        // <AuthContext.Provider value={value}>
-        //     {}
-        //     {children}
-        // </AuthContext.Provider>
 
-}
+    return (
+        <AuthContext.Provider value={{ currentUser, signInWithGitHub, signOut }}>
+            {children}
+        </AuthContext.Provider>
+    );
+};
+
+
+export default AuthProvider;

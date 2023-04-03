@@ -1,26 +1,23 @@
-import React, {useState} from 'react'
-import { useAuth } from '../../Contexts/AuthContext'
-import { FaTrashAlt, FaEdit } from 'react-icons/fa'
+import React, {useState, useContext} from 'react'
+import { AuthContext } from '../../Contexts/AuthContext'
+import { FaTrashAlt, FaEdit, FaRegSave } from 'react-icons/fa'
 import axios from 'axios'
 import CatEdit from './CatEdit'
 
 export default function SingleCategory(props) {
-  const {currentUser} = useAuth()
-
-
+  const {currentUser} = useContext(AuthContext)
   const [showEdit, setShowEdit] = useState(false)
-
 
   const deleteCat = (id) => {
     if(window.confirm(`Are you sure you want to delete ${props.category.categoryName}?`)) {
-      axios.delete(`https://localhost:7075/api/Categories/${id}`).then(() => {props.getCategories()})
+      axios.delete(process.env.REACT_APP_API_URL+'/Categories/${id}').then(() => {props.getCategories()})
     }
   } 
 
   return (
     <tr>
-        <td>{props.category.categoryName}</td>
-        <td>{props.category.categoryDescription}</td>
+        <td>{props.category.catName}</td>
+        <td>{props.category.catDesc}</td>
         {currentUser.email === process.env.REACT_APP_EMAIL_ADMIN &&
           <td>
             <button className='m-1 rounded' id='editLink' onClick={() => setShowEdit(true)}>
@@ -28,7 +25,7 @@ export default function SingleCategory(props) {
             </button>
             <button className='m-1 rounded' id='deleteLink' onClick={() => deleteCat(props.category.categoryId)}>
               <FaTrashAlt />
-            </button>
+          </button>
             {showEdit &&
               <CatEdit
                 showEdit={showEdit}

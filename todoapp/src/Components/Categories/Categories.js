@@ -1,15 +1,16 @@
-import React, {useState, useEffect} from 'react'
-import { useAuth } from '../../Contexts/AuthContext'
+import React, {useState, useEffect, useContext} from 'react'
+import { AuthContext, getUser } from '../../Contexts/AuthContext'
 import axios from 'axios'
 import SingleCategory from './SingleCategory'
 import CatCreate from './CatCreate'
 
 export default function Categories() {
     const [categories, setCategories] = useState([]);
-    const {currentUser} = useAuth();
+    const { currentUser } = useContext(AuthContext);
     const [showCreate, setShowCreate] = useState(false)
+
     const getCategories = () => {
-        axios.get('https://localhost:7075/api/Categories').then(response => {
+        axios.get(process.env.REACT_APP_API_URL + '/Categories').then(response => {
             console.log(response)
             setCategories(response.data)
         })
@@ -36,7 +37,7 @@ export default function Categories() {
                 </div>
             }
          <container className='p-2'>
-            <table className='table bg-info table-dark my-3'>
+            <table className='table bg-info table-white my-3'>
                 <thead className='table-secondary text-uppercase'>
                     <tr>
                         <th>Name</th>

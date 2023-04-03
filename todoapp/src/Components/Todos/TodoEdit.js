@@ -1,8 +1,11 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Modal } from 'react-bootstrap'
 import TodoForm from './TodoForm'
+import { AuthContext } from '../../Contexts/AuthContext'
 
 export default function TodoEdit(props) {
+  const { currentUser } = useContext(AuthContext)
+
   return (
     <Modal
         show={props.showEdit}

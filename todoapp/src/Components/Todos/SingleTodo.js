@@ -1,16 +1,16 @@
-import React, {useState} from 'react'
-import { useAuth } from '../../Contexts/AuthContext'
+import React, {useState, useContext} from 'react'
+import { AuthContext } from '../../Contexts/AuthContext'
 import {FaTrashAlt, FaEdit} from "react-icons/fa";
 import TodoEdit from './TodoEdit'
 import axios from 'axios'
 
 
 export default function SingleTodo(props) {
-  const {currentUser} = useAuth()
+  const {currentUser} = useContext(AuthContext)
   const [showEdit, setShowEdit] = useState(false);
 
   const deleteTodo = (id) => {
-    if(window.confirm(`Are you sure you wnat to delete ${props.todo.name}?`)) {
+    if(window.confirm(`Are you sure you want to delete ${props.todo.name}?`)) {
       axios.delete(`https://localhost:7075/api/Todos/${id}`).then(() => {props.getTodos()})
     }
   }
@@ -41,9 +41,6 @@ export default function SingleTodo(props) {
             <p>{props.todo.description}</p> :
             <p>No Description Provided</p>
         }
-        <a href={props.todo.url} target='_blank' rel='noreferrer' className='btn btn-info'>
-            Visit {props.todo.linkText}
-        </a>
     </div>
   )
 }

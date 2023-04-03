@@ -1,23 +1,28 @@
-import React from 'react'
-import { useAuth } from '../../Contexts/AuthContext'
+import { useContext, useEffect } from 'react'
+import { signOut, AuthContext, currentUser } from '../../Contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
-import Profile from './Profile'
 
-
-export default function Logout() {
-    const { logout } = useAuth()
+const Logout = () => {
+    const { signOut, currentUser } = useContext(AuthContext)
     const navigate = useNavigate()
 
-    function handleAuth() {
-        logout()
-        navigate('/')
-    }
-  return (
-    <div className='logout text-center p-3 bg-dark text-white'>
-        <Profile />
-        <button onClick={() => handleAuth()} className='btn btn-info'>
-            Logout
-        </button>
-    </div>
-  )
-}
+    useEffect(() => {
+        if (!currentUser)
+            navigate('/login'); //redirect to the login component
+    })
+
+    useEffect(() => {
+        // This code will run when the component mounts (i.e., when it first loads)
+        signOut()
+        navigate('/login'); //redirect to the login component
+    }, []);
+
+
+    return (
+        <div>
+            <h1>Signing you out now.</h1>
+        </div>
+    );
+};
+
+export default Logout;

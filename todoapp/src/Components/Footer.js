@@ -1,15 +1,15 @@
 import React from 'react'
 import Logout from './Auth/Logout'
-import { useAuth } from '../Contexts/AuthContext'
+// import { useAuth } from '../Contexts/AuthContext'
 
 export default function Footer() {
-  const {currentUser} = useAuth()
+  // const {currentUser} = useAuth()
 
-  return (
-    <>
-      {currentUser &&
-        <Logout />
-      }
-    </>
-  )
+  //return (
+    // <>
+    //   {currentUser &&
+    //     <Logout />
+    //   }
+    // </>
+  //)
 }

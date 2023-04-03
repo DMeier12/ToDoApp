@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import { useAuth } from '../../Contexts/AuthContext'
+import React, {useState, useEffect, useContext} from 'react'
+import { AuthContext } from '../../Contexts/AuthContext'
 import axios from 'axios'
 import { Container } from 'react-bootstrap'
 import SingleTodo from './SingleTodo.js'
@@ -7,22 +7,14 @@ import FilterCat from './Filtercat'
 import TodoCreate from './TodoCreate'
 import './Todos.css'
 
-
-
-
 export default function Todos() {
      const [todos, setTodos] = useState([]);
-
-     const {currentUser} = useAuth()
+     const {currentUser} = useContext(AuthContext)
      const [showCreate, setShowCreate] = useState(false)
-
-
-
     const [filter, setFilter] = useState(0);
 
      const getTodos = () => {
-        axios.get(`https://localhost:7075/api/Todos`).then(response => {
-            console.log(response)
+        axios.get(process.env.REACT_APP_API_URL + '/Todos').then(response => {
             setTodos(response.data)
         })
      }

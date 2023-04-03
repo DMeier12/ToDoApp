@@ -7,7 +7,7 @@ export default function Todoform(props) {
     const [categories, setCategories] = useState([])
 
     const getCategories = () => {
-        axios.get(`https://localhost:7075/api/Categories`).then(response => setCategories(response.data))
+        axios.get(process.env.REACT_APP_API_URL+ '/Categories').then(response => setCategories(response.data))
     }
 
     const handleSubmit = (values) => {
@@ -15,7 +15,7 @@ export default function Todoform(props) {
         if(!props.todos) {
             const todosToCreate = values
 
-            axios.post(`https://localhost:7075/api/Todos`, todosToCreate).then(() => {
+            axios.post(process.env.REACT_APP_API_URL + '/Todos', todosToCreate).then(() => {
                 props.getTodos()
                 props.setShowCreate(false)
             })
@@ -30,7 +30,7 @@ export default function Todoform(props) {
                 categoryId: values.categoryId
             }
 
-            axios.put(`https://localhost:7075/api/Todos/${props.resource.resourceId}`, todosToEdit).then(() => {
+            axios.put(process.env.REACT_APP_API_URL + '/Todos/' + props.resource.resourceId, todosToEdit).then(() => {
                 props.getTodos()
                 props.setShowEdit(false)
             })
@@ -51,7 +51,7 @@ export default function Todoform(props) {
             categoryId: props.todo ? props.todo.categoryId : ''
         }}
         validationSchema={todoSchema}
-        onSubmit={(values) => handleSubmit(values)}
+        onSubmit={values => handleSubmit(values)}
     >
 
         {({errors, touched}) => (
@@ -63,29 +63,11 @@ export default function Todoform(props) {
                     ) : null}
                 </div>
                 <div className='form-group m-3'>
-                    <Field name='url' className='form-control' placeholder='Url' />
-                    {errors.url && touched.url ? (
-                        <div className='text-danger'>{errors.url}</div>
-                    ) : null}
-                </div>
-                <div className='form-group m-3'>
-                    <Field name='linkText' className='form-control' placeholder='Link Text' />
-                    {errors.linkText && touched.linkText ? (
-                        <div className='text-danger'>{errors.linkText}</div>
-                    ) : null}
-                </div>
-                <div className='form-group m-3'>
-                    <Field name='description' className='form-control' placeholder='Description' />
-                    {errors.description && touched.description ? (
-                        <div className='text-danger'>{errors.description}</div>
-                    ) : null}
-                </div>
-                <div className='form-group m-3'>
                     <Field as='select' name='categoryId' className='form-control'>
                         <option value='' disabled>[--Please Choose--]</option>
                         {categories.map(cat =>
                             <option key={cat.categoryId} value={cat.categoryId}>
-                                {cat.categoryName}
+                                {cat.catName}
                             </option>
                         )}
                     </Field>
